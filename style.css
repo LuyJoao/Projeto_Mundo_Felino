@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #fff0f6;
+    color: #4a0033;
+}
+
+.container {
+    max-width: 960px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #f8a8c7;
+    border-top: 4px solid #e68cbf;
+    border-bottom: 4px solid #e68cbf;
+}
+
+.nav-container {
+    max-width: 960px;
+    margin: auto;
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 10px;
+    padding: 10px 20px;
+    position: relative;
+}
+
+nav ul li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    border-right: 1px solid #b85b95;
+}
+
+nav a {
+    color: #6e1456;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.hero {
+    background: #ffd6eb;
+    padding: 60px 20px;
+    text-align: center;
+    color: #6e1456;
+}
+
+.sobre,
+.doencas,
+.envio {
+    padding: 40px 20px;
+    background-color: #ffe3f0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    background-color: #fcd6ec;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1 1 calc(33% - 20px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    color: #c2185b;
+}
+
+.mural {
+    background-color: #ffe3f0;
+    padding: 40px 20px;
+    overflow: hidden;
+}
+
+.mural-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-height: 720px;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.foto {
+    background-color: #fcd6ec;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.foto img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* Botão "Ver mais" */
+#verMaisBtn {
+    display: block;
+    margin: 20px auto 0;
+    background-color: #d81b60;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#verMaisBtn:hover {
+    background-color: #ad1457;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form input,
+form button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e68cbf;
+}
+
+form button {
+    background-color: #d81b60;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: #ad1457;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8a8c7;
+    color: white;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 20px 30px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        flex: 1 1 100%;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+}
+
+/* Estilo do logo para igualar com os links do menu */
+.logo {
+    font-weight: bold;
+    color: #6e1456;
+    text-transform: uppercase;
+    font-size: 14px;
+    cursor: default;
+}
+
+/* Oculta o botão menu-toggle por padrão (desktop) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #6e1456;
+    cursor: pointer;
+}
+
+/* Nav-links padrão desktop */
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Em telas pequenas, mostra o menu-toggle e esconde nav-links */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #f8a8c7;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 56px; /* altura do header */
+        padding: 10px 0;
+        border-bottom: 4px solid #e68cbf;
+        z-index: 10;
+    }
+
+    /* Quando ativo, mostra o menu */
+    .nav-links.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+        padding: 0;
+        border: none;
+    }
+
+    nav ul li:not(:last-child)::after {
+        display: none;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .hero h2 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .mural-grid {
+        grid-template-columns: 1fr;
+        max-height: calc(3 * 280px);
+        /* 3 linhas de 1 coluna */
+    }
+
+    #verMaisBtn {
+        width: 100%;
+        font-size: 14px;
+        padding: 12px;
+    }
+}

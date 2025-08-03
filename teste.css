@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #fff0f6;
+    color: #4a0033;
+}
+
+.container {
+    max-width: 960px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #f8a8c7;
+    border-top: 4px solid #e68cbf;
+    border-bottom: 4px solid #e68cbf;
+}
+
+.nav-container {
+    max-width: 960px;
+    margin: auto;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* Alinha o logo/botão e os links */
+    align-items: center;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha */
+}
+
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ocupa toda a largura em mobile */
+}
+
+.logo {
+    color: #6e1456;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.menu-toggle {
+    display: none; /* Esconde o botão hambúrguer por padrão */
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #6e1456;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-links {
+    display: flex; /* Exibe os links de navegação em linha por padrão */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: auto; /* Largura automática para desktop */
+}
+
+.nav-links li {
+    margin: 0 10px;
+    padding: 10px 0; /* Ajustado para melhor espaçamento em desktop */
+    position: relative;
+}
+
+/* Remove a linha divisória em mobile */
+nav ul li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    border-right: 1px solid #b85b95;
+}
+
+nav a {
+    color: #6e1456;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.hero {
+    background: #ffd6eb;
+    padding: 60px 20px;
+    text-align: center;
+    color: #6e1456;
+}
+
+.sobre,
+.doencas,
+.envio {
+    padding: 40px 20px;
+    background-color: #ffe3f0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    background-color: #fcd6ec;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1 1 calc(33% - 20px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    color: #c2185b;
+}
+
+.mural {
+    background-color: #ffe3f0;
+    padding: 40px 20px;
+    overflow: hidden;
+}
+
+.mural-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-height: 720px;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.foto {
+    background-color: #fcd6ec;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.foto img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* Botão "Ver mais" */
+#verMaisBtn {
+    display: block;
+    margin: 20px auto 0;
+    background-color: #d81b60;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#verMaisBtn:hover {
+    background-color: #ad1457;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form input,
+form button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e68cbf;
+}
+
+form button {
+    background-color: #d81b60;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: #ad1457;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8a8c7;
+    color: white;
+}
+
+/* Media Queries */
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 20px 30px;
+    }
+
+    /* Em telas menores que 1024px, os cards podem ocupar 100% da largura */
+    .card {
+        flex: 1 1 100%;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 10px;
+    }
+
+    /* Mostra o botão hambúrguer e esconde os links de navegação por padrão */
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none; /* Esconde os links por padrão em mobile */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: #f8a8c7; /* Cor de fundo para o menu expandido */
+        position: absolute;
+        top: 60px; /* Ajuste conforme a altura do seu header */
+        left: 0;
+        z-index: 1000;
+        border-top: 1px solid #e68cbf;
+    }
+
+    .nav-links.active {
+        display: flex; /* Mostra os links quando a classe 'active' está presente */
+    }
+
+    .nav-links li {
+        margin: 0;
+        padding: 15px 0;
+        border-bottom: 1px solid #e68cbf;
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    /* Remove a linha divisória vertical em mobile */
+    nav ul li:not(:last-child)::after {
+        content: none;
+    }
+
+    .mural-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-height: calc(3 * 280px);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .hero h2 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .mural-grid {
+        grid-template-columns: 1fr;
+        max-height: calc(3 * 280px);
+    }
+
+    #verMaisBtn {
+        width: 100%;
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    /* Garante que o nav-header ocupe 100% da largura e use flexbox para alinhamento */
+    .nav-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px; /* Adiciona padding para o conteúdo do header */
+    }
+
+    /* Ajusta a posição do menu hamburguer para telas menores */
+    .menu-toggle {
+        font-size: 24px; /* Ajusta o tamanho do ícone */
+    }
+
+    nav {
+        flex-direction: column; /* Empilha os itens da navegação */
+        align-items: flex-start; /* Alinha os itens à esquerda */
+    }
+}

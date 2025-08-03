@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Felino</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <nav>
+                <div class="nav-header">
+                    <div class="logo">Logo do Projeto</div>
+                    <button class="menu-toggle" aria-label="Abrir menu">
+                        &#9776;
+                    </button>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#doencas">Doenças</a></li>
+                    <li><a href="#envio">Envie sua Foto</a></li>
+                    <li><a href="#mural">Mural</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h2>Saúde e Bem-estar para Gatos</h2>
+            <p>Informações acessíveis sobre doenças felinas.</p>
+        </div>
+    </section>
+
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <h2>Sobre o Projeto</h2>
+            <p>Este projeto foi desenvolvido com intuito de alertar e conscientizar sobre as doençasem felinos</p>
+        </div>
+    </section>
+
+    <section id="posts" class="doencas">
+        <div class="container">
+            <h2>Doenças Comuns</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Panleucopenia</h3>
+                    <p>Afeta gravemente o sistema imunológico.</p>
+                </div>
+                <div class="card">
+                    <h3>FIV</h3>
+                    <p>AIDS felina que compromete a imunidade.</p>
+                </div>
+                <div class="card">
+                    <h3>FeLV</h3>
+                    <p>Leucemia que causa várias complicações.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mural">
+        <div class="container">
+            <h2>Mural dos Gatos</h2>
+            <div class="mural-grid" id="mural">
+                <div class="foto"><img src="images/gato1.jpg" alt="Gato 1"></div>
+                <div class="foto"><img src="images/gato2.jpg" alt="Gato 2"></div>
+                <div class="foto"><img src="images/gato3.jpg" alt="Gato 3"></div>
+                <div class="foto"><img src="images/gato1.jpg" alt="Gato 1"></div>
+                <div class="foto"><img src="images/gato2.jpg" alt="Gato 2"></div>
+                <div class="foto"><img src="images/gato3.jpg" alt="Gato 3"></div>
+                <div class="foto"><img src="images/gato1.jpg" alt="Gato 1"></div>
+                <div class="foto"><img src="images/gato2.jpg" alt="Gato 2"></div>
+                <div class="foto"><img src="images/gato3.jpg" alt="Gato 3"></div>
+                <div class="foto"><img src="images/gato1.jpg" alt="Gato 1"></div>
+                <div class="foto"><img src="images/gato2.jpg" alt="Gato 2"></div>
+                <div class="foto"><img src="images/gato3.jpg" alt="Gato 3"></div>
+                <div class="foto"><img src="images/gato1.jpg" alt="Gato 1"></div>
+                <div class="foto"><img src="images/gato2.jpg" alt="Gato 2"></div>
+                <div class="foto"><img src="images/gato3.jpg" alt="Gato 3"></div>
+                <div class="foto"><img src="images/gato1.jpg" alt="Gato 1"></div>
+                <div class="foto"><img src="images/gato2.jpg" alt="Gato 2"></div>
+                <div class="foto"><img src="images/gato3.jpg" alt="Gato 3"></div>
+            </div>
+
+            <button id="verMaisBtn">Ver mais</button>
+        </div>
+    </section>
+
+
+    <section id="quadros" class="envio">
+        <div class="container">
+            <h2>Envie a foto do seu gato para o nosso mural!!!</h2>
+            <form action="https://wa.me/42999690560?text=Envio%20de%20foto%20de%20gato" method="get" target="_blank">
+                <label for="nome">Seu nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="gato">Nome do gato:</label>
+                <input type="text" id="gato" name="gato" required>
+
+                <label for="foto">Foto do gato:</label>
+                <input type="file" id="foto" name="foto" accept="image/*">
+
+                <button type="submit">Enviar via WhatsApp</button>
+            </form>
+            <p>Ou envie para: <strong>joaosmauel.luy@gmail.com</strong></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Projeto Felino. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const mural = document.getElementById("mural");
+        const btn = document.getElementById("verMaisBtn");
+
+        let linhasExibidas = 3;
+
+        function getLinhaAltura() {
+            const largura = window.innerWidth;
+            if (largura < 480) return 280; // 1 coluna
+            else if (largura < 768) return 280; // 2 colunas
+            else return 280; // 3 colunas
+        }
+
+        btn.addEventListener("click", () => {
+            linhasExibidas += 3;
+            mural.style.maxHeight = `${linhasExibidas * getLinhaAltura()}px`;
+
+            if (mural.children.length <= linhasExibidas * 3) {
+                btn.style.display = "none";
+            }
+        });
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
