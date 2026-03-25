@@ -1,0 +1,19 @@
+/* ============================================================
+   ZOONOSES.CSS — Estilos específicos da página de zoonoses
+   ============================================================ */
+
+.zoonose-intro {
+  max-width: 720px;
+  font-size: 1.02rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.important-note {
+  background: #fff3cd;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 12px 16px;
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #7c4a00;
+}

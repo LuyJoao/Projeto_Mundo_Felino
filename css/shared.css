@@ -1,0 +1,547 @@
+/* ============================================================
+   MUNDO FELINO — DESIGN SYSTEM COMPARTILHADO
+   Importado por todas as páginas
+   ============================================================ */
+
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;500;600;700&display=swap');
+
+/* ============================================================
+   VARIÁVEIS DE DESIGN
+   ============================================================ */
+:root {
+  /* Cores principais */
+  --color-primary:       #d81b60;
+  --color-primary-dark:  #ad1457;
+  --color-primary-light: #f48fb1;
+
+  /* Backgrounds */
+  --color-bg:            #fff5f9;
+  --color-bg-section:    #fce4ec;
+  --color-bg-card:       #fff0f6;
+  --color-bg-highlight:  #ffd6eb;
+  --color-bg-header:     #fce4ec;
+
+  /* Texto */
+  --color-text:          #3d001f;
+  --color-text-muted:    #8d4565;
+  --color-text-light:    #fff;
+
+  /* Bordas e sombras */
+  --color-border:        #f4a7c3;
+  --shadow-sm:           0 2px 8px rgba(216, 27, 96, 0.10);
+  --shadow-md:           0 6px 24px rgba(216, 27, 96, 0.14);
+  --shadow-lg:           0 12px 40px rgba(216, 27, 96, 0.18);
+
+  /* Tipografia */
+  --font-display:        'Playfair Display', Georgia, serif;
+  --font-body:           'Nunito', 'Segoe UI', sans-serif;
+
+  /* Espaçamentos */
+  --spacing-xs:  8px;
+  --spacing-sm:  16px;
+  --spacing-md:  32px;
+  --spacing-lg:  56px;
+  --spacing-xl:  80px;
+
+  /* Bordas */
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  24px;
+  --radius-pill: 100px;
+
+  /* Transições */
+  --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   RESET GLOBAL
+   ============================================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+ul, ol {
+  padding-left: 1.4em;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+/* ============================================================
+   TIPOGRAFIA
+   ============================================================ */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+h2 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  margin-bottom: var(--spacing-sm);
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  margin-top: 6px;
+}
+
+h3 {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+h4 {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: var(--spacing-sm) 0 6px;
+}
+
+p {
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+/* ============================================================
+   HEADER / NAVEGAÇÃO
+   ============================================================ */
+.site-header {
+  background-color: var(--color-bg-header);
+  border-bottom: 3px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  height: 72px;
+}
+
+.logo {
+  flex-shrink: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 100%;
+  width: auto;
+}
+
+.site-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 4px;
+  padding: 0;
+  margin: 0;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  transition: background var(--transition), color var(--transition);
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+/* Botão menu mobile */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 10px;
+  line-height: 1;
+  transition: background var(--transition), color var(--transition);
+}
+
+.menu-toggle:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  background: linear-gradient(135deg, var(--color-bg-highlight) 0%, #ffe0ef 100%);
+  padding: var(--spacing-xl) var(--spacing-sm);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "🐱";
+  position: absolute;
+  font-size: 180px;
+  opacity: 0.05;
+  bottom: -20px;
+  right: -20px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.hero h2 {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  color: var(--color-text);
+  max-width: 760px;
+  margin: 0 auto var(--spacing-xs);
+}
+
+.hero h2::after { display: none; }
+
+.hero p {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ============================================================
+   SEÇÕES
+   ============================================================ */
+.section {
+  padding: var(--spacing-lg) var(--spacing-sm);
+}
+
+.section--alt {
+  background-color: var(--color-bg-section);
+}
+
+.section + .section {
+  border-top: 1px solid rgba(244, 167, 195, 0.3);
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(244, 167, 195, 0.3);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.card img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+/* ============================================================
+   LAYOUT LADO A LADO (texto + imagem)
+   ============================================================ */
+.split-layout {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+  margin-top: var(--spacing-sm);
+}
+
+.split-layout__text { flex: 2; }
+.split-layout__media {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.split-layout__media img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition);
+}
+
+.split-layout__media img:hover {
+  transform: scale(1.03);
+}
+
+/* ============================================================
+   BLOCO DE DOENÇA / ZOONOSE
+   ============================================================ */
+.disease-block {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  border: 1px solid rgba(244, 167, 195, 0.4);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ============================================================
+   BOTÃO WHATSAPP
+   ============================================================ */
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #25d366;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.whatsapp-btn:hover {
+  background-color: #1ebe5e;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+}
+
+/* ============================================================
+   MENSAGEM FINAL / DESTAQUE
+   ============================================================ */
+.highlight-section {
+  background: linear-gradient(135deg, #fce4ec, #ffd6eb);
+  padding: var(--spacing-lg) var(--spacing-sm);
+  text-align: center;
+}
+
+.highlight-section p {
+  max-width: 700px;
+  margin: 0 auto var(--spacing-sm);
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+}
+
+.highlight-section .love-phrase {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--color-primary);
+  margin-top: var(--spacing-xs);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background-color: var(--color-bg-header);
+  border-top: 3px solid var(--color-border);
+  text-align: center;
+  padding: var(--spacing-md) var(--spacing-sm);
+}
+
+.site-footer p {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ============================================================
+   BOTÃO VOLTAR AO TOPO
+   ============================================================ */
+.btn-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background-color: var(--color-primary);
+  color: white;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 46px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity var(--transition), transform var(--transition), background var(--transition);
+  z-index: 999;
+}
+
+.btn-top.visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.btn-top:hover {
+  background-color: var(--color-primary-dark);
+  color: white;
+}
+
+/* ============================================================
+   ANIMAÇÃO DE ENTRADA
+   ============================================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width: 768px) {
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background: var(--color-bg-header);
+    border-bottom: 3px solid var(--color-border);
+    padding: var(--spacing-xs) 0;
+    box-shadow: var(--shadow-md);
+  }
+
+  .site-nav.open {
+    display: block;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  .site-nav li {
+    margin: 0;
+    border-bottom: 1px solid rgba(244, 167, 195, 0.3);
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 14px var(--spacing-sm);
+    border-radius: 0;
+    font-size: 0.9rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .split-layout {
+    flex-direction: column;
+  }
+
+  .split-layout__media {
+    width: 100%;
+    order: -1;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .disease-block {
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+}
