@@ -11,43 +11,43 @@
    ============================================================ */
 :root {
   /* Cores principais */
-  --color-primary:       #d81b60;
-  --color-primary-dark:  #ad1457;
+  --color-primary: #d81b60;
+  --color-primary-dark: #ad1457;
   --color-primary-light: #f48fb1;
 
   /* Backgrounds */
-  --color-bg:            #fff5f9;
-  --color-bg-section:    #fce4ec;
-  --color-bg-card:       #fff0f6;
-  --color-bg-highlight:  #ffd6eb;
-  --color-bg-header:     #fce4ec;
+  --color-bg: #fff5f9;
+  --color-bg-section: #fce4ec;
+  --color-bg-card: #fff0f6;
+  --color-bg-highlight: #ffd6eb;
+  --color-bg-header: #fce4ec;
 
   /* Texto */
-  --color-text:          #3d001f;
-  --color-text-muted:    #8d4565;
-  --color-text-light:    #fff;
+  --color-text: #3d001f;
+  --color-text-muted: #8d4565;
+  --color-text-light: #fff;
 
   /* Bordas e sombras */
-  --color-border:        #f4a7c3;
-  --shadow-sm:           0 2px 8px rgba(216, 27, 96, 0.10);
-  --shadow-md:           0 6px 24px rgba(216, 27, 96, 0.14);
-  --shadow-lg:           0 12px 40px rgba(216, 27, 96, 0.18);
+  --color-border: #f4a7c3;
+  --shadow-sm: 0 2px 8px rgba(216, 27, 96, 0.10);
+  --shadow-md: 0 6px 24px rgba(216, 27, 96, 0.14);
+  --shadow-lg: 0 12px 40px rgba(216, 27, 96, 0.18);
 
   /* Tipografia */
-  --font-display:        'Playfair Display', Georgia, serif;
-  --font-body:           'Nunito', 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Nunito', 'Segoe UI', sans-serif;
 
   /* Espaçamentos */
-  --spacing-xs:  8px;
-  --spacing-sm:  16px;
-  --spacing-md:  32px;
-  --spacing-lg:  56px;
-  --spacing-xl:  80px;
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 32px;
+  --spacing-lg: 56px;
+  --spacing-xl: 80px;
 
   /* Bordas */
-  --radius-sm:  8px;
-  --radius-md:  14px;
-  --radius-lg:  24px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
   --radius-pill: 100px;
 
   /* Transições */
@@ -57,7 +57,9 @@
 /* ============================================================
    RESET GLOBAL
    ============================================================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -91,7 +93,8 @@ a:hover {
   color: var(--color-primary-dark);
 }
 
-ul, ol {
+ul,
+ol {
   padding-left: 1.4em;
 }
 
@@ -111,7 +114,9 @@ li {
 /* ============================================================
    TIPOGRAFIA
    ============================================================ */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-display);
   line-height: 1.25;
   color: var(--color-text);
@@ -265,7 +270,9 @@ p {
   margin: 0 auto var(--spacing-xs);
 }
 
-.hero h2::after { display: none; }
+.hero h2::after {
+  display: none;
+}
 
 .hero p {
   font-size: 1.05rem;
@@ -284,7 +291,7 @@ p {
   background-color: var(--color-bg-section);
 }
 
-.section + .section {
+.section+.section {
   border-top: 1px solid rgba(244, 167, 195, 0.3);
 }
 
@@ -335,7 +342,10 @@ p {
   margin-top: var(--spacing-sm);
 }
 
-.split-layout__text { flex: 2; }
+.split-layout__text {
+  flex: 2;
+}
+
 .split-layout__media {
   flex: 1;
   display: flex;
@@ -464,6 +474,30 @@ p {
 .btn-top:hover {
   background-color: var(--color-primary-dark);
   color: white;
+}
+
+/* Estilo para a legenda da imagem */
+.image-with-caption {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.image-with-caption figcaption {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  /* Tamanho menor para não competir com o texto principal */
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: right;
+  /* Alinhado à direita costuma ficar mais elegante em cards */
+}
+
+/* Garante que a imagem continue ocupando o espaço correto */
+.image-with-caption img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  display: block;
 }
 
 /* ============================================================

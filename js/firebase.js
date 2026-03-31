@@ -1,5 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+// 1. Você precisa importar o Analytics aqui:
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC48yQi0fEQCOolLjhqm8uqzyeYIOGS6mU",
@@ -11,5 +13,11 @@ const firebaseConfig = {
   measurementId: "G-HYKFB9JX4Y"
 };
 
+// Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app); // Exporta o banco de dados
+
+// 2. Você PRECISA desta linha para o Analytics funcionar:
+const analytics = getAnalytics(app);
+
+// Exporta o banco de dados
+export const db = getFirestore(app);

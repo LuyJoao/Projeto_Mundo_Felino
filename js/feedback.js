@@ -1,91 +1,74 @@
 /* ============================================================
-   FEEDBACK.JS — Salvar e exibir resultados de feedback
+   FEEDBACK.JS — Salvar feedback com limite de 1 por DIA
    ============================================================ */
 import { db } from "./firebase.js";
-import {
-  collection,
-  addDoc,
-  getDocs
+import { 
+    collection, 
+    addDoc 
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const COLLECTION = "feedbacks";
+const STORAGE_KEY = "mundo_felino_data_voto";
 
-/* --- Salvar novo feedback --- */
+/**
+ * Salva o feedback se tiver passado mais de 24h desde o último
+ */
 export async function salvarFeedback(tipo) {
-  console.log("Tentando salvar feedback tipo:", tipo);
-  try {
-    await addDoc(collection(db, COLLECTION), {
-      tipo,
-      data: new Date()
-    });
+    const agora = new Date().getTime();
+    const umDiaEmMs = 24 * 60 * 60 * 1000; // 24 horas em milissegundos
+    const ultimoVoto = localStorage.getItem(STORAGE_KEY);
 
-    mostrarMensagem("Obrigado pelo seu feedback 💜");
-    await carregarEstatisticas();
-  } catch (err) {
-    console.error("Erro ao salvar feedback no Firebase:", err);
-    mostrarMensagem("Erro ao enviar. Verifique as regras do banco de dados.");
-  }
+    // Verifica se já votou hoje
+    if (ultimoVoto && (agora - ultimoVoto) < umDiaEmMs) {
+        substituirBotoesPorMensagem("Você já votou hoje! Volte amanhã para avaliar novamente. 💜");
+        return;
+    }
+
+    try {
+        await addDoc(collection(db, COLLECTION), {
+            tipo: tipo,
+            data: new Date()
+        });
+
+        // Salva o momento exato do voto (em milissegundos)
+        localStorage.setItem(STORAGE_KEY, agora.toString());
+
+        substituirBotoesPorMensagem("Obrigado pelo seu feedback! 💜");
+
+    } catch (err) {
+        console.error("Erro ao salvar feedback:", err);
+        const el = document.getElementById("feedback-result");
+        if (el) el.textContent = "Erro ao enviar. Tente novamente mais tarde.";
+    }
 }
 
-/* --- Carregar estatísticas do Firestore --- */
-export async function carregarEstatisticas() {
-  try {
-    const snapshot = await getDocs(collection(db, COLLECTION));
-    const contagem = { ruim: 0, mediano: 0, bom: 0 };
+function substituirBotoesPorMensagem(texto) {
+    const areaBotoes = document.querySelector(".feedback-options");
+    const elResultado = document.getElementById("feedback-result");
 
-    snapshot.forEach(doc => {
-      const tipo = doc.data().tipo;
-      if (tipo in contagem) contagem[tipo]++;
-    });
-
-    renderEstatisticas(contagem);
-  } catch (err) {
-    console.error("Erro ao carregar estatísticas:", err);
-  }
+    if (areaBotoes) areaBotoes.style.display = "none";
+    if (elResultado) {
+        elResultado.textContent = texto;
+        elResultado.style.display = "block";
+    }
 }
 
-/* --- Renderizar resultados na tela em texto --- */
-function renderEstatisticas({ ruim, mediano, bom }) {
-  const total = ruim + mediano + bom;
-  const container = document.getElementById("feedback-stats");
-  
-  if (!container) {
-    console.warn("Elemento 'feedback-stats' não encontrado no HTML.");
-    return;
-  }
-
-  if (total === 0) {
-    container.innerHTML = "<p>Seja o primeiro a avaliar!</p>";
-    return;
-  }
-
-  const pct = v => Math.round((v / total) * 100);
-
-  container.innerHTML = `
-    <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px;">
-        <span class="stat-item">🤩 ${pct(bom)}% Bom</span>
-        <span class="stat-item">😉 ${pct(mediano)}% Mediano</span>
-        <span class="stat-item">☹️ ${pct(ruim)}% Ruim</span>
-    </div>
-  `;
-}
-
-/* --- Exibir mensagem de confirmação --- */
-function mostrarMensagem(texto) {
-  const el = document.getElementById("feedback-result");
-  if (el) el.textContent = texto;
-}
-
-/* --- Inicializar eventos --- */
 export function iniciarFeedback() {
-  const botoes = document.querySelectorAll(".feedback-btn[data-tipo]");
-  
-  botoes.forEach(btn => {
-    btn.addEventListener("click", () => {
-        const tipo = btn.getAttribute("data-tipo");
-        salvarFeedback(tipo);
-    });
-  });
+    const agora = new Date().getTime();
+    const umDiaEmMs = 24 * 60 * 60 * 1000;
+    const ultimoVoto = localStorage.getItem(STORAGE_KEY);
 
-  carregarEstatisticas();
+    // Se votou há menos de 24h, esconde os botões ao carregar a página
+    if (ultimoVoto && (agora - ultimoVoto) < umDiaEmMs) {
+        substituirBotoesPorMensagem("Obrigado por sua avaliação de hoje! 💜");
+        return; 
+    }
+
+    const botoes = document.querySelectorAll(".feedback-btn[data-tipo]");
+    botoes.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const tipo = btn.getAttribute("data-tipo");
+            salvarFeedback(tipo);
+        });
+    });
 }
